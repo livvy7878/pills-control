@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:PillsControl"
              xmlns:commands="clr-namespace:PillsControl.Commands"
-             xmlns:service="clr-namespace:PillsControl.Service"
+             xmlns:viewmodels="clr-namespace:PillsControl.ViewModels"
+             xmlns:service="clr-namespace:PillsControl.ViewModels.Service"
              StartupUri="Windows/LoginWindow.xaml">
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary>
+					<viewmodels:MainWindowViewModel x:Key="MainWindowViewModel"/>
 					<commands:CommandImplementation x:Key="Commands"/>
-					<service:UserProfileHandler x:Key="ProfileHandler"/>
 				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PillsControl"
         mc:Ignorable="d"
-        Title="Pills control" Height="140" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Pills control" Height="160" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
 	<Window.DataContext>
-		<StaticResource ResourceKey="ProfileHandler"></StaticResource>
+		<StaticResource ResourceKey="MainWindowViewModel"/>
 	</Window.DataContext>
 
 	<Grid>
@@ -23,14 +23,14 @@
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<Label Grid.Column="0" Grid.Row="0" Content="Username:"/>
-		<TextBox Grid.Column="1" Grid.Row="0" Margin="5"/>
+		<TextBox Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding UserProfileHandler.UserLogInTextBox,Mode=OneWayToSource}"/>
 		<Label Grid.Column="0" Grid.Row="1" Content="Password:"/>
-		<TextBox Grid.Column="1" Grid.Row="1" Margin="5"/>
+		<TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding UserProfileHandler.UserPasswordInTextBox,Mode=OneWayToSource}"/>
 		<UniformGrid DataContext="{StaticResource Commands}" Rows="1" Columns="3" Grid.Column="1" Grid.Row="2">
 			<Button Content="Log in" Margin="5" Command="{Binding Path=TryToLogInCommand}"/>
 			<Button Content="New" Margin="5" Command="{Binding Path=MakeNewUserCommand}"/>
 			<Button Content="Exit" Margin="5" Command="{Binding Path=CloseApplicationCommand}" />
 		</UniformGrid>
-		<TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=UserInfo}" Margin="5"/>
+		<TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Path=UserProfileHandler.UserInfo}" Margin="5"/>
 	</Grid>
 </Window>
