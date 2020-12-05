@@ -5,7 +5,7 @@
              xmlns:commands="clr-namespace:PillsControl.Commands"
              xmlns:viewmodels="clr-namespace:PillsControl.ViewModels"
              xmlns:service="clr-namespace:PillsControl.ViewModels.Service"
-             StartupUri="Windows/LoginWindow.xaml">
+             StartupUri="Windows/MainWindow.xaml">
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>

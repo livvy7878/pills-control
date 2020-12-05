@@ -74,7 +74,17 @@ namespace PillsControl.ViewModels.Service
 		private UserProfile LoadUser()
 		{
 			var users = LoadAllUsers();
-			return users?.First(user => user.Login == UserLogInTextBox);
+			UserProfile toReturn;
+			try
+			{
+				toReturn = users.First(user => user.Login == UserLogInTextBox);
+			}
+			catch (Exception)
+			{
+				toReturn = null;
+			}
+
+			return toReturn;
 		}
 
 		private void SaveAllUsers(List<UserProfile> users)
@@ -84,6 +94,7 @@ namespace PillsControl.ViewModels.Service
 			XmlDictionaryWriter writer = XmlDictionaryWriter.CreateTextWriter(fs);
 
 			serializer.WriteObject(writer, users);
+			writer.Close();
 		}
 
 		private List<UserProfile> LoadAllUsers()

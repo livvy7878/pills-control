@@ -33,14 +33,15 @@ namespace PillsControl.Commands
 			{
 				return _tryToLogInCommand ??= new BasicCommand(obj =>
 					{
-						UserProfileHandler profileHandler = App.Current.FindResource("UserProfileHandler") as UserProfileHandler;
+						MainWindowViewModel mainWindowViewModel = App.Current.FindResource("MainWindowViewModel") as MainWindowViewModel;
+						UserProfileHandler profileHandler = mainWindowViewModel.UserProfileHandler;
 						UserProfile loadedUser = profileHandler.LoginUser();
-
-						MainWindow window = new MainWindow();
-						MainWindowViewModel mainWindowViewModel =
-							App.Current.FindResource("MainWindowViewModel") as MainWindowViewModel;
+						if (loadedUser == null)
+						{
+							return;
+						}
 						mainWindowViewModel.CurrentUserProfile = loadedUser;
-						window.Show();
+						mainWindowViewModel.IsAuthorized = true;
 					}
 				);
 			}

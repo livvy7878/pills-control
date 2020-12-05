@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PillsControl"
         mc:Ignorable="d"
-        Title="Pills control" Height="450" Width="800">
-	<StackPanel>
-		
-	</StackPanel>
+        Title="Pills control" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+
+	<Window.DataContext>
+		<StaticResource ResourceKey="MainWindowViewModel"/>
+	</Window.DataContext>
+
+	<Window.Resources>
+		<Style TargetType="Frame" x:Key="AuthorizationStylePage">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding IsAuthorized}" Value ="True">
+					<Setter Property="Visibility" Value="Hidden"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+	</Window.Resources>
+
+	<Grid>
+		<Frame Source="LoginPage.xaml" Style="{DynamicResource AuthorizationStylePage}"/>
+	</Grid>
 </Window>
