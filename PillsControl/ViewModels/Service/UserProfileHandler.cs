@@ -32,14 +32,14 @@ namespace PillsControl.ViewModels.Service
 
 		public void SaveUserProfile(UserProfile userProfile)
 		{
-			List<UserProfile> userProfiles = LoadAllUserProfiles();
+			List<UserProfile> userProfiles = LoadAllUserProfiles() ?? new List<UserProfile>();
 			userProfiles.Add(userProfile);
 			SaveAllUsersProfiles(userProfiles);
 		}
 
 		public UserProfile FindUserProfile(string nameDescription)
 		{
-			List<UserProfile> userProfiles = LoadAllUserProfiles();
+			List<UserProfile> userProfiles = LoadAllUserProfiles() ?? new List<UserProfile>();
 			UserProfile findedUser = userProfiles.Find(user => user.NameDescription == nameDescription);
 			return findedUser;
 		}

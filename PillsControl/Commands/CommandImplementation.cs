@@ -1,34 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
 using PillsControl.Models;
 using PillsControl.ViewModels;
 using PillsControl.ViewModels.Service;
-using PillsControl.Windows;
 
 namespace PillsControl.Commands
 {
-	class CommandImplementation
+	internal class CommandImplementation
 	{
-		MainWindowViewModel mainWindowViewModel =
-			App.Current.FindResource("MainWindowViewModel") as MainWindowViewModel;
+		private readonly MainWindowViewModel mainWindowViewModel =
+			Application.Current.FindResource("MainWindowViewModel") as MainWindowViewModel;
+
 		private BasicCommand _closeApplicationCommand;
-		public BasicCommand CloseApplicationCommand
-		{
-			get
-			{
-				return _closeApplicationCommand ??= new BasicCommand(obj =>
-					{
-						App.Current.Shutdown();
-					}
-				);
-			}
-		}
+
+		private BasicCommand _makeNewUserCommand;
+
+		private BasicCommand _saveNewUserProfileCommand;
 
 		private BasicCommand _tryToLogInCommand;
+
+		public BasicCommand CloseApplicationCommand
+		{
+			get { return _closeApplicationCommand ??= new BasicCommand(obj => { Application.Current.Shutdown(); }); }
+		}
+
 		public BasicCommand TryToLogInCommand
 		{
 			get
@@ -41,6 +36,7 @@ namespace PillsControl.Commands
 						{
 							return;
 						}
+
 						mainWindowViewModel.CurrentUserAccount = loadedUser;
 						mainWindowViewModel.IsAuthorized = true;
 					}
@@ -48,7 +44,6 @@ namespace PillsControl.Commands
 			}
 		}
 
-		private BasicCommand _makeNewUserCommand;
 		public BasicCommand MakeNewUserCommand
 		{
 			get
@@ -61,15 +56,27 @@ namespace PillsControl.Commands
 			}
 		}
 
-		private BasicCommand _saveNewUserProfileCommand;
-
 		public BasicCommand SaveNewUserProfileCommand
 		{
 			get
 			{
 				return _saveNewUserProfileCommand ??= new BasicCommand(obj =>
 					{
-						mainWindowViewModel.UserProfileHandler.SaveUserProfile(new UserProfile(mainWindowViewModel.UserProfileHandler.CurrentUserCreatedName));
+						if (!Directory.Exists("Resources/User"))
+						{
+							Directory.CreateDirectory("Resources/User");
+						}
+
+						string pathToImage = mainWindowViewModel.UserProfileHandler.CurrentUserCreatedImagePath ??
+						                     "Resources/basicUserProfileImage.jpg";
+
+						FileInfo fi = new FileInfo(pathToImage);
+						File.Create("Resources/User" + fi.Name);
+						File.Copy(pathToImage, "Resources/User/" + fi.Name, true);
+
+						mainWindowViewModel.UserProfileHandler.SaveUserProfile(
+							new UserProfile(mainWindowViewModel.UserProfileHandler.CurrentUserCreatedName,
+								"Resources/User" + fi.Name));
 					}
 				);
 			}

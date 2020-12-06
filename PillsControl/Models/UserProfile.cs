@@ -17,6 +17,7 @@ namespace PillsControl.Models
 		public UserProfile(string nameDescription, string pathToImage = "Resources/basicUserProfileImage.jpg")
 		{
 			NameDescription = nameDescription;
+			PathToImage = pathToImage;
 		}
 		[DataMember]
 		public string NameDescription { get; set; }
