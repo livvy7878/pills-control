@@ -11,17 +11,7 @@
 		<StaticResource ResourceKey="MainWindowViewModel"/>
 	</Window.DataContext>
 
-	<Window.Resources>
-		<Style TargetType="Frame" x:Key="AuthorizationStylePage">
-			<Style.Triggers>
-				<DataTrigger Binding="{Binding IsAuthorized}" Value ="True">
-					<Setter Property="Visibility" Value="Hidden"/>
-				</DataTrigger>
-			</Style.Triggers>
-		</Style>
-	</Window.Resources>
-
 	<Grid>
-		<Frame Source="LoginPage.xaml" Style="{DynamicResource AuthorizationStylePage}"/>
+		<Frame x:Name="MainFrame" Source="LoginPage.xaml"/>
 	</Grid>
 </Window>

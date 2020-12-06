@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using PillsControl.Models;
 using PillsControl.ViewModels.Service;
 
@@ -6,6 +7,9 @@ namespace PillsControl.ViewModels
 {
 	internal class MainWindowViewModel : DependencyObject
 	{
+		public static event Action UserIsPassedLogin;
+		public static event Action UserLoggedOut;
+
 		public static readonly DependencyProperty IsAuthorizedProperty = DependencyProperty.Register(
 			"IsAuthorized", typeof(bool), typeof(MainWindowViewModel), new PropertyMetadata(default(bool)));
 
@@ -16,8 +20,16 @@ namespace PillsControl.ViewModels
 
 		public bool IsAuthorized
 		{
-			get => (bool) GetValue(IsAuthorizedProperty);
-			set => SetValue(IsAuthorizedProperty, value);
+			get
+			{
+				return (bool)GetValue(IsAuthorizedProperty);
+			}
+			set
+			{
+				SetValue(IsAuthorizedProperty, value);
+				if (IsAuthorized) { UserIsPassedLogin?.Invoke(); }
+				else if (!IsAuthorized) { UserLoggedOut?.Invoke(); }
+			}
 		}
 
 		public UserProfileHandler UserProfileHandler { get; set; }

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PillsControl.Models
+namespace PillsControl.Commands
 {
-	class UserProfile
+	internal class NavigationCommands
 	{
+
 	}
 }

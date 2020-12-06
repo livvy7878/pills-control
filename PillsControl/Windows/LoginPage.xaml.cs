@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PillsControl.Windows
 {
 	/// <summary>
-	/// Interaction logic for MainPage.xaml
+	/// Interaction logic for LoginPage.xaml
 	/// </summary>
-	public partial class MainPage : Page
+	public partial class LoginPage : Page
 	{
-		public MainPage()
+		public LoginPage()
 		{
 			InitializeComponent();
 		}
