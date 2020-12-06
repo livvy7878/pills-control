@@ -2,6 +2,8 @@
 using System.Windows;
 using PillsControl.Models;
 using PillsControl.ViewModels.Service;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace PillsControl.ViewModels
 {
@@ -17,6 +19,7 @@ namespace PillsControl.ViewModels
 		{
 			UserProfileHandler = new UserProfileHandler();
 			UserAccountHandler = new UserAccountHandler();
+			LoadedUserProfiles = new ObservableCollection<UserProfile>(UserProfileHandler.LoadAllUserProfiles());
 		}
 
 		public bool IsAuthorized
@@ -36,5 +39,14 @@ namespace PillsControl.ViewModels
 		public UserProfileHandler UserProfileHandler { get; set; }
 		public UserAccountHandler UserAccountHandler { get; set; }
 		public UserAccount CurrentUserAccount { get; set; }
+
+		public static readonly DependencyProperty LoadedUserProfilesProperty = DependencyProperty.Register(
+			"List", typeof(ObservableCollection<UserProfile>), typeof(MainWindowViewModel), new PropertyMetadata(default(List<UserProfile>)));
+
+		public ObservableCollection<UserProfile> LoadedUserProfiles
+		{
+			get { return (ObservableCollection<UserProfile>) GetValue(LoadedUserProfilesProperty); }
+			set { SetValue(LoadedUserProfilesProperty, value); }
+		}
 	}
 }

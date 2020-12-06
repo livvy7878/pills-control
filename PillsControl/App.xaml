@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:PillsControl"
              xmlns:commands="clr-namespace:PillsControl.Commands"
              xmlns:viewmodels="clr-namespace:PillsControl.ViewModels"
-             xmlns:service="clr-namespace:PillsControl.ViewModels.Service"
+			 xmlns:convert="clr-namespace:PillsControl.Converters"
              StartupUri="Windows/MainWindow.xaml">
 	<Application.Resources>
 		<ResourceDictionary>
@@ -12,6 +12,7 @@
 				<ResourceDictionary>
 					<viewmodels:MainWindowViewModel x:Key="MainWindowViewModel"/>
 					<commands:CommandImplementation x:Key="Commands"/>
+					<convert:ImagePathConverter x:Key="UserImageConverter"/>
 				</ResourceDictionary>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>

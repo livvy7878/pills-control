@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace PillsControl.Models
 {
@@ -14,7 +16,7 @@ namespace PillsControl.Models
 	[DataContract]
 	class UserProfile
 	{
-		public UserProfile(string nameDescription, string pathToImage = "Resources/basicUserProfileImage.jpg")
+		public UserProfile(string nameDescription, string pathToImage = "/Resources/basicUserProfileImage.jpg")
 		{
 			NameDescription = nameDescription;
 			PathToImage = pathToImage;

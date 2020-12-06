@@ -70,13 +70,15 @@ namespace PillsControl.Commands
 						string pathToImage = mainWindowViewModel.UserProfileHandler.CurrentUserCreatedImagePath ??
 						                     "Resources/basicUserProfileImage.jpg";
 
-						FileInfo fi = new FileInfo(pathToImage);
-						File.Create("Resources/User" + fi.Name);
-						File.Copy(pathToImage, "Resources/User/" + fi.Name, true);
+						FileInfo fileInfo = new FileInfo(pathToImage);
+						File.Create("Resources/User" + fileInfo.Name);
+						File.Copy(pathToImage, "Resources/User/" + fileInfo.Name, true);
 
-						mainWindowViewModel.UserProfileHandler.SaveUserProfile(
-							new UserProfile(mainWindowViewModel.UserProfileHandler.CurrentUserCreatedName,
-								"Resources/User" + fi.Name));
+						UserProfile createdProfile = new UserProfile(mainWindowViewModel.UserProfileHandler.CurrentUserCreatedName,
+							"/Resources/User/" + fileInfo.Name);
+						mainWindowViewModel.UserProfileHandler.SaveUserProfile(createdProfile);
+
+						mainWindowViewModel.LoadedUserProfiles.Add(createdProfile);
 					}
 				);
 			}
