@@ -16,6 +16,7 @@ namespace PillsControl.ViewModels
 		public MainWindowViewModel()
 		{
 			UserProfileHandler = new UserProfileHandler();
+			UserAccountHandler = new UserAccountHandler();
 		}
 
 		public bool IsAuthorized
@@ -33,6 +34,7 @@ namespace PillsControl.ViewModels
 		}
 
 		public UserProfileHandler UserProfileHandler { get; set; }
-		public UserProfile CurrentUserProfile { get; set; }
+		public UserAccountHandler UserAccountHandler { get; set; }
+		public UserAccount CurrentUserAccount { get; set; }
 	}
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PillsControl"
         mc:Ignorable="d"
-        Title="Pills control" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Pills control" Height="450" Width="400" WindowStartupLocation="CenterScreen">
 
 	<Window.DataContext>
 		<StaticResource ResourceKey="MainWindowViewModel"/>

@@ -3,14 +3,14 @@
 namespace PillsControl.Models
 {
 	[DataContract]
-	internal class UserProfile
+	internal class UserAccount
 	{
 		[DataMember]
 		public string Login { get; set; }
 		[DataMember]
 		public string Password { get; set; }
 
-		public UserProfile(string login, string password)
+		public UserAccount(string login, string password)
 		{
 			Login = login;
 			Password = password;
@@ -18,7 +18,7 @@ namespace PillsControl.Models
 
 		public override bool Equals(object? obj)
 		{
-			UserProfile user = obj as UserProfile;
+			UserAccount user = obj as UserAccount;
 			return user.Login == Login && user.Password == Password;
 		}
 	}

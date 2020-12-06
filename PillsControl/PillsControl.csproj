@@ -1,9 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<UseWindowsforms>true</UseWindowsforms>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\basicUserProfileImage.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\basicUserProfileImage.jpg" />
+	</ItemGroup>
 
 </Project>

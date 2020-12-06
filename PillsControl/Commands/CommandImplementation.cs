@@ -13,6 +13,8 @@ namespace PillsControl.Commands
 {
 	class CommandImplementation
 	{
+		MainWindowViewModel mainWindowViewModel =
+			App.Current.FindResource("MainWindowViewModel") as MainWindowViewModel;
 		private BasicCommand _closeApplicationCommand;
 		public BasicCommand CloseApplicationCommand
 		{
@@ -33,14 +35,13 @@ namespace PillsControl.Commands
 			{
 				return _tryToLogInCommand ??= new BasicCommand(obj =>
 					{
-						MainWindowViewModel mainWindowViewModel = App.Current.FindResource("MainWindowViewModel") as MainWindowViewModel;
-						UserProfileHandler profileHandler = mainWindowViewModel.UserProfileHandler;
-						UserProfile loadedUser = profileHandler.LoginUser();
+						UserAccountHandler userAccountHandler = mainWindowViewModel.UserAccountHandler;
+						UserAccount loadedUser = userAccountHandler.LoginUser();
 						if (loadedUser == null)
 						{
 							return;
 						}
-						mainWindowViewModel.CurrentUserProfile = loadedUser;
+						mainWindowViewModel.CurrentUserAccount = loadedUser;
 						mainWindowViewModel.IsAuthorized = true;
 					}
 				);
@@ -54,8 +55,21 @@ namespace PillsControl.Commands
 			{
 				return _makeNewUserCommand ??= new BasicCommand(obj =>
 					{
-						MainWindowViewModel mainWindowViewModel = App.Current.FindResource("MainWindowViewModel") as MainWindowViewModel;
-						mainWindowViewModel.UserProfileHandler.SaveUser();
+						mainWindowViewModel.UserAccountHandler.SaveUser();
+					}
+				);
+			}
+		}
+
+		private BasicCommand _saveNewUserProfileCommand;
+
+		public BasicCommand SaveNewUserProfileCommand
+		{
+			get
+			{
+				return _saveNewUserProfileCommand ??= new BasicCommand(obj =>
+					{
+						mainWindowViewModel.UserProfileHandler.SaveUserProfile(new UserProfile(mainWindowViewModel.UserProfileHandler.CurrentUserCreatedName));
 					}
 				);
 			}
