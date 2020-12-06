@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PillsControl"
+        xmlns:fa="clr-namespace:FontAwesome5;assembly=FontAwesome5.Net"
         mc:Ignorable="d"
-        Title="Pills control" Height="450" Width="400" WindowStartupLocation="CenterScreen">
+        Title="Pills control" Height="450" Width="400" WindowStartupLocation="CenterScreen" Icon="/Resources/appIcon.ico">
 
 	<Window.DataContext>
 		<StaticResource ResourceKey="MainWindowViewModel"/>

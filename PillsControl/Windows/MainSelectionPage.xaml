@@ -3,9 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:fa5="http://schemas.fontawesome.com/icons/"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="400"
-      Title="MainSelectionPage">
+      Title="MainSelectionPage" >
 
 	<Page.DataContext>
 		<StaticResource ResourceKey="MainWindowViewModel" />
@@ -36,7 +37,13 @@
 					<Button Grid.Column="0" Grid.Row="1" Height="50" Width="100" HorizontalAlignment="Left" Content="Add profile" />
 				</Grid>
 			</TabItem>-->
-			<TabItem Header="Add new profile">
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal">
+						<fa5:ImageAwesome Icon="Solid_Plus" Height="10"/>
+						<TextBlock Margin="5" Text="Add new profile"/>
+					</StackPanel>
+				</TabItem.Header>
 				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
 					<Image Name="DisplayedImage" Width="200" Height="200"/>
 					<TextBlock Text="Name" />
@@ -47,7 +54,14 @@
 					</UniformGrid>
 				</StackPanel>
 			</TabItem>
-			<TabItem Header="Add to profile" />
+			<TabItem>
+				<TabItem.Header>
+					<StackPanel Orientation="Horizontal">
+						<fa5:ImageAwesome Icon="Solid_Marker"  Height="10"/>
+						<TextBlock Margin="5" Text="Add reminder"/>
+					</StackPanel>
+				</TabItem.Header>
+			</TabItem>
 		</TabControl>
 	</Grid>
 </Page>

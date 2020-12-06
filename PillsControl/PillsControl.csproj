@@ -8,10 +8,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\appIcon.ico" />
 	  <None Remove="Resources\basicUserProfileImage.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="FontAwesome5" Version="2.0.8" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\appIcon.ico" />
 	  <Resource Include="Resources\basicUserProfileImage.jpg" />
 	</ItemGroup>
 
